@@ -1,0 +1,93 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+
+    <UseWPF>true</UseWPF>
+    <StartupObject>wsn_keboo.App</StartupObject>
+    <ApplicationIcon>AppIcon.ico</ApplicationIcon>
+    <UseWindowsForms>true</UseWindowsForms>
+    <PackageIcon>12715357_0-removebg-preview.png</PackageIcon>
+    <Platforms>AnyCPU;x64</Platforms>
+  </PropertyGroup>
+
+  <!--
+  Uncomment to enable single file exe publishing
+  https://learn.microsoft.com/dotnet/core/deploying/single-file/overview
+  
+  The Condition on PublishSingleFile is to prevent debugging issues while running as a single file.
+  Many debugging tools (Snoop, Visual Studio's UI debugging tools for XAML) will not function with PublishSingleFile set to true.
+  https://github.com/dotnet/runtime/issues/3773
+  -->
+  <!--
+  <PropertyGroup>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <PublishSingleFile Condition="'$(Configuration)' != 'Debug'">true</PublishSingleFile>
+    <IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+    <SelfContained>true</SelfContained>
+  </PropertyGroup>
+  -->
+
+  <ItemGroup>
+    <ApplicationDefinition Remove="App.xaml" />
+    <None Remove="Resources\cloud.png" />
+    <None Remove="Resources\logo.png" />
+    <Content Include="AppIcon.ico" />
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+    <Page Include="App.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ClosedXML" />
+    <PackageReference Include="CommunityToolkit.Mvvm" />
+    <PackageReference Include="DotNetProjects.WpfToolkit.DataVisualization" />
+    <PackageReference Include="LiveCharts.Wpf.NetCore3" />
+    <PackageReference Include="MaterialDesignThemes" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Common" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" />
+    <PackageReference Include="MQTTnet" />
+    <PackageReference Include="ReportViewerCore.WinForms" />
+    <PackageReference Include="System.Data.SqlClient" />
+    <PackageReference Include="System.IO.Ports" />
+    <PackageReference Include="System.Net.Sockets" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\cloud.png" />
+    <Resource Include="Resources\logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Data\DataSet1.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Data\DataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="bin\Debug\net8.0-windows\" />
+  </ItemGroup>
+</Project>

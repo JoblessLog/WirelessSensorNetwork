@@ -1,0 +1,51 @@
+﻿<Window x:Class="wsn_keboo.Views.CustomReport"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:wsn_keboo.Views"
+        xmlns:rv="clr-namespace:Microsoft.Reporting.WinForms;assembly=Microsoft.ReportViewer.WinForms"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Custom Report View" Height="450" Width="700"
+        Background="#A30D36">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <WindowsFormsHost Grid.Row="1" Grid.RowSpan="4"
+                        Grid.Column="0" Grid.ColumnSpan="5"
+                        Margin="10">
+            <rv:ReportViewer x:Name="ReportViewerDemo" />
+        </WindowsFormsHost>
+        <Border CornerRadius="10" Background="Black" MaxWidth="320"
+                Margin="5,10,5,5">
+        <Button  
+            Margin="120,10,10,10" Background="LightGray" 
+            Click="Button_Click" Name="Gen_rp" 
+            Content="Load" FontSize="10"
+            MaxHeight="100" MaxWidth="100"/>
+            
+        </Border>
+        <DatePicker Grid.Column="0" Grid.Row="0" 
+            Name="FromDate" Foreground="White"
+            Margin="10,5,70,40" Width="80"
+            materialDesign:HintAssist.Hint="From Date" />
+        <DatePicker Grid.Column="0" Grid.Row="0" 
+            Name="ToDate" Foreground="White"
+            Margin="10,40,70,10" Width="80"
+            materialDesign:HintAssist.Hint="To Date" />
+    </Grid>
+</Window>
